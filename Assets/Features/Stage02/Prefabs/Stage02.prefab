@@ -499,6 +499,8 @@ MonoBehaviour:
   - {fileID: 590392460009135749}
   - {fileID: 590392458345989938}
   - {fileID: 590392459229583739}
+  buttonsInteractable: 0
+  panelTransform: {fileID: 2300793314738698186}
 --- !u!1 &2300793314430886264
 GameObject:
   m_ObjectHideFlags: 0

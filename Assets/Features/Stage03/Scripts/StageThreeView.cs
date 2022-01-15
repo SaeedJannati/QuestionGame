@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using QuestionGame.General.Popups;
 using TMPro;
 using UnityEngine;
@@ -13,9 +14,10 @@ namespace QuestionGame.Stage03
         [SerializeField] private Image _resultImage;
         [SerializeField] private TMP_Text _totalQuestionCount;
         [SerializeField] private TMP_Text _correctAnswerCount;
-
+        [SerializeField] private CanvasGroup _canvasGroup;
         private void Start()
         {
+            GetIn(null);
             ((StageThreeLogic) _logic).Initialize();
         }
 
@@ -23,7 +25,25 @@ namespace QuestionGame.Stage03
         {
             _resultImage.sprite = sprite;
         }
+        public void GetIn(Action onComplete)
+        {
+            _canvasGroup.alpha = 0.0f;
+            _canvasGroup.DOFade(1.0f, .3f).onComplete +=
+                () =>
+                {
+                    onComplete?.Invoke();
+                };
+        }
 
+        public void GetOut(Action onComplete)
+        {
+            _canvasGroup.alpha = 1.0f;
+            _canvasGroup.DOFade(0.0f, .3f).onComplete +=
+                () =>
+                {
+                    onComplete?.Invoke();
+                };
+        }
         public void SetTotalQuestion(int count)
         {
             _totalQuestionCount.text = count.ToString();
@@ -38,7 +58,8 @@ namespace QuestionGame.Stage03
         {
             if (isClosing)
                 return;
-            OnClose();
+            isClosing = true;
+            GetOut(OnClose);
         }
         public override void OnClose()
         {
@@ -53,6 +74,7 @@ namespace QuestionGame.Stage03
             Logic?.OnClose();
             Logic = null;
             _logic = null;
+            Destroy(gameObject);
         }
 
         public void StartAgainClicked()

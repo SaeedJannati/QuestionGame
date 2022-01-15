@@ -151,6 +151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _canvas: {fileID: 8731891406997219944}
+  _panelTransform: {fileID: 8731891406817330776}
 --- !u!1 &8731891407171891770
 GameObject:
   m_ObjectHideFlags: 0

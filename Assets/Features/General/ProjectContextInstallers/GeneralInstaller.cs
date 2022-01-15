@@ -1,4 +1,5 @@
 using QuestionGame.General;
+using QuestionGame.General.AudioSystem;
 using QuestionGame.General.Popups;
 using QuestionGame.Stage02;
 using QuestionGame.Stage03;
@@ -8,6 +9,7 @@ using Zenject;
 public class GeneralInstaller : MonoInstaller
 {
     [SerializeField] private GameManager _gameManager;
+    [SerializeField] private AudioManager _audioManager;
     public override void InstallBindings()
     {
         BindInstallers();
@@ -19,6 +21,7 @@ public class GeneralInstaller : MonoInstaller
     {
         Container.Bind<PopupManger>().AsSingle();
         Container.Bind<GameManager>().FromInstance(_gameManager).AsSingle();
+        Container.Bind<AudioManager>().FromInstance(_audioManager).AsSingle();
     }
 
      void BindInstallers()

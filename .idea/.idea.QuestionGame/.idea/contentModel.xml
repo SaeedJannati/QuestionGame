@@ -8,11 +8,22 @@
       <e p="Assets" t="Include">
         <e p="Features" t="Include">
           <e p="General" t="Include">
+            <e p="Audio" t="Include">
+              <e p="Scripts" t="Include">
+                <e p="AudioManager.cs" t="Include" />
+                <e p="AudioMangerInstaller.cs" t="Include" />
+                <e p="AudioModelInstaller.cs" t="Include" />
+                <e p="SfxObject.cs" t="Include" />
+              </e>
+            </e>
             <e p="GameManager" t="Include">
               <e p="Scripts" t="Include">
                 <e p="GameManager.cs" t="Include" />
                 <e p="GameMangerModelInstaller.cs" t="Include" />
               </e>
+            </e>
+            <e p="ObjectPool" t="Include">
+              <e p="ObjectPool.cs" t="Include" />
             </e>
             <e p="PopUpManger" t="Include">
               <e p="Scripts" t="Include">

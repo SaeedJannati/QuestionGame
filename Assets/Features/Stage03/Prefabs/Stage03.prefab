@@ -159,6 +159,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 109065627348125903}
+  - component: {fileID: 2310837840500241600}
   m_Layer: 5
   m_Name: Stage03
   m_TagString: Untagged
@@ -187,6 +188,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!225 &2310837840500241600
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 109065627348125902}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &109065627351312210
 GameObject:
   m_ObjectHideFlags: 0
@@ -687,6 +700,7 @@ MonoBehaviour:
   _resultImage: {fileID: 109065626990752553}
   _totalQuestionCount: {fileID: 109065627905300963}
   _correctAnswerCount: {fileID: 109065628303346852}
+  _canvasGroup: {fileID: 2310837840500241600}
 --- !u!1 &109065628303346854
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,6 +11,8 @@ using QuestionGame.General;
 using QuestionGame.Stage01;
 using Random = UnityEngine.Random;
 using System.Threading.Tasks;
+using DG.Tweening;
+using QuestionGame.General.AudioSystem;
 using QuestionGame.Stage03;
 
 namespace QuestionGame.Stage02
@@ -26,6 +28,7 @@ namespace QuestionGame.Stage02
         private int _currentQuestionIndex;
         private int _correctAnswerIndex;
         private int _userCorrectAnswers;
+        [Inject] private AudioManager _audioManager;
 
         [Inject]
         public StageTwoLogic(PopupManger popupManger, StageTwoModel model, QuestionModel questionModel)
@@ -66,35 +69,53 @@ namespace QuestionGame.Stage02
 
             _currentQuestionIndex = 0;
             ShowNextQuestion();
-
         }
 
         void ShowResult()
         {
-          var logic=  _popupManger.RequestPopup(PopupName.STAGE_03);
-          ((StageThreeLogic) logic).SetQuestionDetails(_userCorrectAnswers,_questionCount);
-          Close();
+            var logic = _popupManger.RequestPopup(PopupName.STAGE_03);
+            ((StageThreeLogic) logic).SetQuestionDetails(_userCorrectAnswers, _questionCount);
+            Close();
+        }
+
+        public void PlayPopSfx()
+        {
+            _audioManager.RequestAudio(ClipName.POP);
+        }
+
+        public void PlayCloseSfx()
+        {
+            _audioManager.RequestAudio(ClipName.DRAG);
+        }
+
+        public void PlayCorrectSfx()
+        {
+            _audioManager.RequestAudio(ClipName.CORRECT);
+        }
+
+        public void PlayWrongSfx()
+        {
+            _audioManager.RequestAudio(ClipName.WRONG);
         }
 
         void ShowNextQuestion()
         {
-
             if (_currentQuestionIndex > _questionCount - 1)
             {
-                ShowResult();
+               ShowResult();
                 return;
             }
 
+            PlayPopSfx();
             var view = ((StageTwoView) View);
             var question = _questions[_currentQuestionIndex];
-            var rnd=new System.Random();
+            var rnd = new System.Random();
             question.choices = question.choices.OrderBy(item => rnd.Next()).ToList();
             _correctAnswerIndex = question.choices.IndexOf(question.choices.FirstOrDefault(item => item.isAnswer));
             view.FillViewWithQuestion(question, _currentQuestionIndex);
             view.ResteButtonColours(_model.neutralSprite);
             view.SetTotalQuestionCount(_questions.Count);
             _currentQuestionIndex++;
-           
         }
 
         Question GetNewQuestion(List<Question> chosenQuestions)
@@ -109,25 +130,28 @@ namespace QuestionGame.Stage02
         public void ChoiceClicked(int chosenIndex)
         {
             var view = ((StageTwoView) View);
-            if (chosenIndex==_correctAnswerIndex)
+            if (chosenIndex == _correctAnswerIndex)
             {
-                view.SetButtonColour(chosenIndex,_model.correctSprite);
+                view.SetButtonColour(chosenIndex, _model.correctSprite);
+                view.OscilateButton(chosenIndex);
                 _userCorrectAnswers++;
+                PlayCorrectSfx();
             }
             else
             {
-                view.SetButtonColour(chosenIndex,_model.wrongSprite);
-             
-                view.SetButtonColour(_correctAnswerIndex,_model.correctSprite);
+                view.SetButtonColour(chosenIndex, _model.wrongSprite);
+                PlayWrongSfx();
+                view.panelTransform.DOShakePosition(.2f, Vector3.one * 20, 20);
+                view.SetButtonColour(_correctAnswerIndex, _model.correctSprite);
             }
 
             ShowNextQuiestionAfterDelay();
         }
 
-        async void     ShowNextQuiestionAfterDelay()
+        async void ShowNextQuiestionAfterDelay()
         {
             await Task.Delay(_model.periodBetweenQuiestionsInms);
-            ShowNextQuestion();
+            ((StageTwoView) View).GetOut(ShowNextQuestion);
         }
 
         public class Factory : PlaceholderFactory<StageTwoLogic>

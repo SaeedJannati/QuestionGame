@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using QuestionGame.General.AudioSystem;
 using QuestionGame.General.Popups;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -10,11 +11,13 @@ namespace QuestionGame.Stage01
     public class StageOneLogic : IPopupLogic
     {
         private PopupManger _popupManger;
+        private AudioManager _audioManager;
 
         [Inject]
-        public  StageOneLogic(PopupManger popupManger)
+        public  StageOneLogic(PopupManger popupManger,AudioManager audioManager )
         {
             _popupManger = popupManger;
+            _audioManager = audioManager;
         }
 
         public Popup View { get; set; }
@@ -40,7 +43,15 @@ namespace QuestionGame.Stage01
             _popupManger.RequestPopup(PopupName.STAGE_02);
             Close();
         }
-        
+
+        public void PlayPopSfx()
+        {
+            _audioManager.RequestAudio(ClipName.POP);
+        }
+        public void   PlayCloseSfx()
+        {
+            _audioManager.RequestAudio(ClipName.DRAG);
+        }
         public class Factory:PlaceholderFactory<StageOneLogic>
         {   
         }
