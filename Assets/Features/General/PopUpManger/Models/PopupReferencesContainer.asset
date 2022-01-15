@@ -31,7 +31,7 @@ MonoBehaviour:
     - Name: Stage 03
       name: 2
       reference:
-        m_AssetGUID: 
+        m_AssetGUID: 4ebc23197c9ad8a458d47800d3402723
         m_SubObjectName: 
         m_SubObjectType: 
         m_EditorAssetChanged: 0

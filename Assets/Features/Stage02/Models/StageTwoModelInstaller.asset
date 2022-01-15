@@ -15,3 +15,6 @@ MonoBehaviour:
   _config:
     correctSprite: {fileID: 21300000, guid: 56473511fc5956a4a8dcfd0cda47a5c8, type: 3}
     wrongSprite: {fileID: 21300000, guid: 753d7fbabfd0e3745bfeeafa07366c1d, type: 3}
+    neutralSprite: {fileID: 21300000, guid: 063cf5d451e697449a07d3116ff5b328, type: 3}
+    periodBetweenQuiestionsInms: 1000
+    answerTime: 0

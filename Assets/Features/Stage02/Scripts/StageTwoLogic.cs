@@ -10,6 +10,8 @@ using Zenject;
 using QuestionGame.General;
 using QuestionGame.Stage01;
 using Random = UnityEngine.Random;
+using System.Threading.Tasks;
+using QuestionGame.Stage03;
 
 namespace QuestionGame.Stage02
 {
@@ -22,8 +24,11 @@ namespace QuestionGame.Stage02
         private int _questionCount;
         private List<Question> _questions;
         private int _currentQuestionIndex;
+        private int _correctAnswerIndex;
+        private int _userCorrectAnswers;
+
         [Inject]
-        public  StageTwoLogic(PopupManger popupManger,StageTwoModel model,QuestionModel questionModel)
+        public StageTwoLogic(PopupManger popupManger, StageTwoModel model, QuestionModel questionModel)
         {
             _popupManger = popupManger;
             _model = model;
@@ -31,12 +36,14 @@ namespace QuestionGame.Stage02
         }
 
         public Popup View { get; set; }
+
         public IPopupModel GetConfig()
         {
             return _model;
         }
 
         public AssetReference reference { get; set; }
+
         public void OnClose()
         {
             if (reference != null)
@@ -58,46 +65,73 @@ namespace QuestionGame.Stage02
             }
 
             _currentQuestionIndex = 0;
-            if (!ShowNextQuestion())
-            {
-                ShowResult();
-            }
+            ShowNextQuestion();
 
         }
 
         void ShowResult()
         {
-            _popupManger.RequestPopup(PopupName.STAGE_03);
+          var logic=  _popupManger.RequestPopup(PopupName.STAGE_03);
+          ((StageThreeLogic) logic).SetQuestionDetails(_userCorrectAnswers,_questionCount);
+          Close();
         }
 
-        bool ShowNextQuestion()
+        void ShowNextQuestion()
         {
-            _currentQuestionIndex++;
-            if (_currentQuestionIndex > _questionCount - 1)
-                return false;
 
-            ((StageTwoView) View).FillViewWithQuestion(_questions[_currentQuestionIndex],_currentQuestionIndex);
-            return true;
+            if (_currentQuestionIndex > _questionCount - 1)
+            {
+                ShowResult();
+                return;
+            }
+
+            var view = ((StageTwoView) View);
+            var question = _questions[_currentQuestionIndex];
+            var rnd=new System.Random();
+            question.choices = question.choices.OrderBy(item => rnd.Next()).ToList();
+            _correctAnswerIndex = question.choices.IndexOf(question.choices.FirstOrDefault(item => item.isAnswer));
+            view.FillViewWithQuestion(question, _currentQuestionIndex);
+            view.ResteButtonColours(_model.neutralSprite);
+            view.SetTotalQuestionCount(_questions.Count);
+            _currentQuestionIndex++;
+           
         }
 
         Question GetNewQuestion(List<Question> chosenQuestions)
         {
-          var questions= _questionModel.questions.
-              Select(item=> item ).
-              Where(item=>!chosenQuestions.Contains(item)).ToList();
+            var questions = _questionModel.questions.Select(item => item).Where(item => !chosenQuestions.Contains(item))
+                .ToList();
 
-          var randomQuestion = questions[Random.Range(0, questions.Count)];
-          return randomQuestion;
+            var randomQuestion = questions[Random.Range(0, questions.Count)];
+            return randomQuestion;
         }
 
         public void ChoiceClicked(int chosenIndex)
         {
-            Debug.Log(chosenIndex);
+            var view = ((StageTwoView) View);
+            if (chosenIndex==_correctAnswerIndex)
+            {
+                view.SetButtonColour(chosenIndex,_model.correctSprite);
+                _userCorrectAnswers++;
+            }
+            else
+            {
+                view.SetButtonColour(chosenIndex,_model.wrongSprite);
+             
+                view.SetButtonColour(_correctAnswerIndex,_model.correctSprite);
+            }
+
+            ShowNextQuiestionAfterDelay();
         }
 
-        public class Factory:PlaceholderFactory<StageTwoLogic>
-        {   
+        async void     ShowNextQuiestionAfterDelay()
+        {
+            await Task.Delay(_model.periodBetweenQuiestionsInms);
+            ShowNextQuestion();
+        }
+
+        public class Factory : PlaceholderFactory<StageTwoLogic>
+        {
         }
     }
 }
-

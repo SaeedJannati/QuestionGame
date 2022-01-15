@@ -5,6 +5,7 @@ using Zenject;
 using System;
 using QuestionGame.Stage01;
 using QuestionGame.Stage02;
+using QuestionGame.Stage03;
 using UnityEngine.AddressableAssets;
 namespace QuestionGame.General.Popups
 {
@@ -14,6 +15,8 @@ namespace QuestionGame.General.Popups
         [Inject] public StageOneLogic.Factory stageOneFactory;
 
         [Inject] public StageTwoLogic.Factory stageTwoFactory;
+
+        [Inject] public StageThreeLogic.Factory stageThreeFactory;
         //All pop ups being created as a child of this transform
      
         public Transform popupsParent;
@@ -64,7 +67,7 @@ namespace QuestionGame.General.Popups
                 case PopupName.STAGE_02:
                    return stageTwoFactory.Create();
                 case PopupName.STAGE_03:
-                    // return heroInfoLogicFactory.Create();
+                    return stageThreeFactory.Create();
                 default:
                     return null;
             }

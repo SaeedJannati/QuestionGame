@@ -1,6 +1,7 @@
 using QuestionGame.General;
 using QuestionGame.General.Popups;
 using QuestionGame.Stage02;
+using QuestionGame.Stage03;
 using UnityEngine;
 using Zenject;
 
@@ -24,6 +25,7 @@ public class GeneralInstaller : MonoInstaller
     {
         StageOneInstaller.Install(Container);
         StageTwoInstaller.Install(Container);
+        StageThreeInstaller.Install(Container);
     }
 
      void InstallFactories()

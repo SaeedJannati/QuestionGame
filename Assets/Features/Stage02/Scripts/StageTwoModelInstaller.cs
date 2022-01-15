@@ -22,5 +22,8 @@ namespace  QuestionGame.Stage02
     {
         public Sprite correctSprite;
         public Sprite wrongSprite;
+        public Sprite neutralSprite;
+        public int periodBetweenQuiestionsInms;
+        public int answerTime;
     } 
 }
