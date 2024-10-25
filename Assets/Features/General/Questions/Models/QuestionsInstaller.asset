@@ -1,0 +1,97 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7814e6873b30a9c49914b0fcb5b28fcc, type: 3}
+  m_Name: QuestionsInstaller
+  m_EditorClassIdentifier: 
+  _config:
+    questions:
+    - question: What year did the Titanic sink in the Atlantic Ocean on 15 April,
+        on its maiden voyage from Southampton?
+      choices:
+      - choice: 1911
+        isAnswer: 0
+      - choice: 1912
+        isAnswer: 1
+      - choice: 1913
+        isAnswer: 0
+      - choice: 1914
+        isAnswer: 0
+    - question: What is the name of the biggest technology company in South Korea?
+      choices:
+      - choice: Samsung
+        isAnswer: 1
+      - choice: KIA
+        isAnswer: 0
+      - choice: Hyundai
+        isAnswer: 0
+      - choice: LG
+        isAnswer: 0
+    - question: What is the capital of Portugal?
+      choices:
+      - choice: Porto
+        isAnswer: 0
+      - choice: Madrid
+        isAnswer: 0
+      - choice: Paris
+        isAnswer: 0
+      - choice: Lisbon
+        isAnswer: 1
+    - question: What is the chemical symbol for silver?
+      choices:
+      - choice: Al
+        isAnswer: 0
+      - choice: Hg
+        isAnswer: 0
+      - choice: Ag
+        isAnswer: 1
+      - choice: Be
+        isAnswer: 0
+    - question: What is the lifespan of a dragonfly?
+      choices:
+      - choice: 24 hours
+        isAnswer: 1
+      - choice: 36 hours
+        isAnswer: 0
+      - choice: 48 hours
+        isAnswer: 0
+      - choice: 72  hours
+        isAnswer: 0
+    - question: in which country will you find the great pyramid of giza?
+      choices:
+      - choice: Jordan
+        isAnswer: 0
+      - choice: Syria
+        isAnswer: 0
+      - choice: Egypt
+        isAnswer: 1
+      - choice: Iraq
+        isAnswer: 0
+    - question: How many rings are on the Olympic flag?
+      choices:
+      - choice: 0
+        isAnswer: 0
+      - choice: 4
+        isAnswer: 0
+      - choice: 5
+        isAnswer: 1
+      - choice: 7
+        isAnswer: 0
+    - question: What are the main colors on the flag of Spain?
+      choices:
+      - choice: Balck and white
+        isAnswer: 0
+      - choice: Red and yellow
+        isAnswer: 1
+      - choice: Blue and red
+        isAnswer: 0
+      - choice: Green adn red
+        isAnswer: 0

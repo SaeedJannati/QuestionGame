@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Stage03Atlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 1
+      m_CompressionQuality: 100
+      m_CrunchedCompression: 1
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 82ca3aeccee415741bae415ec0e3caf8, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 16b08324bd75edf44bbed43ebc3a89b6, type: 3}
+  - {fileID: 21300000, guid: 1e8c75a4faaef4242ab89250cee63d65, type: 3}
+  - {fileID: 21300000, guid: 13c7c7850d114f94aba5774c9dea131d, type: 3}
+  - {fileID: 21300000, guid: 68c356163cb2bc64bb4b83d98329185f, type: 3}
+  - {fileID: 21300000, guid: fd744b8b39b43de459567c5567018e40, type: 3}
+  - {fileID: 21300000, guid: 5ff1407fc24dfb44e84ae7fc38b8fd6f, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Stage2_0000s_0000s_0003s_0001_back 1
+  - Stage2_0001s_0000s_0000_Start-Over
+  - Stage2_0001s_0001s_0004_back
+  - Stage2_0001s_0001s_0000_Great-Job
+  - Stage2_0001s_0001s_0002_Terrible
+  - Stage2_0001s_0001s_0001_Good-Job
+  m_RenderDataMap: {}
+  m_Tag: Stage03Atlas
+  m_IsVariant: 0

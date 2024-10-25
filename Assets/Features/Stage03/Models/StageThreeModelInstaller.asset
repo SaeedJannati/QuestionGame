@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a86409e93f94b3a46bfa8aabfcd5b23e, type: 3}
+  m_Name: StageThreeModelInstaller
+  m_EditorClassIdentifier: 
+  _stageThreeModelModel:
+    terribleSprtie: {fileID: 21300000, guid: fd744b8b39b43de459567c5567018e40, type: 3}
+    goodJobSprite: {fileID: 21300000, guid: 5ff1407fc24dfb44e84ae7fc38b8fd6f, type: 3}
+    greatJobSprite: {fileID: 21300000, guid: 68c356163cb2bc64bb4b83d98329185f, type: 3}
